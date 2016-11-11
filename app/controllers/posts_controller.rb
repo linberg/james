@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.save
       flash[:notice] = "Successfully created post!"
-      redirect_to post_path(@post)
+      redirect_to posts_path(@post)
     else
       flash[:alert] - "Error creating new post!"
       render :new
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   def update
     if @post.update_attributes(post_params)
       flash[:notice] = "Successfully updated post!"
-      redirect_to post_path(@posts)
+      redirect_to posts_path(@posts)
     else
       flash[:alert] = "Error updating post!"
       render :edit
@@ -38,7 +38,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    if @post.destroy
+    @post = Post.find(params[:id])
+    if @post.present?
+      @post.destroy
       flash[:notice] = "Successfully deleted post!"
       redirect_to posts_path
     else
