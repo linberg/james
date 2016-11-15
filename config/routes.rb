@@ -3,11 +3,16 @@ Rails.application.routes.draw do
   #get 'static_pages/index'
   root to: "posts#index"
 
+  get '/static_pages/about'
+  get '/static_pages/contact'
+  post '/static_pages/thank_you'
+  
   resources :posts
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'posts/new'
   post 'posts/create'
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
